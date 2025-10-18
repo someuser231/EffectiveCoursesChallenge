@@ -9,6 +9,9 @@ lifecycleRuntimeKtx = "2.9.4"
 appcompat = "1.7.1"
 material = "1.13.0"
 jetbrainsKotlinJvm = "2.0.21"
+fragment = "1.5.4"
+navigation  = "2.9.5"
+adapterdelegates = "4.3.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -18,6 +21,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
+androidx-navigation = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+adapterdelegates = { group = "com.hannesdorfmann", name = "adapterdelegates4-kotlin-dsl-viewbinding", version.ref = "adapterdelegates"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

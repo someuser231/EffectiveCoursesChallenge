@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">EffectiveCoursesChallenge</string>
+    <string name="app_name" translatable="false">EffectiveCoursesChallenge</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="email_hint" translatable="false">example@gmail.com</string>
+    <string name="password_hint">Input the password</string>
+    <string name="no_account">"Is there not an account? "</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forgot_password">Forgot the password</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+    <string name="account">Account</string>
+    <string name="search_courses">Search courses...</string>
+    <string name="by_publish_date">По дате добавления</string>
+    <string name="more_detail">More detail</string>
 </resources>

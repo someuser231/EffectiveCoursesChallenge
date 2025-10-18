@@ -1,0 +1,45 @@
+package com.kecc.effectivecourseschallenge.activities
+
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.kecc.effectivecourseschallenge.R
+import com.kecc.effectivecourseschallenge.databinding.ActivityMainBinding
+import com.kecc.effectivecourseschallenge.fragments.FavoritesFrg
+import com.kecc.effectivecourseschallenge.fragments.HomeFrg
+import com.kecc.effectivecourseschallenge.view_models.MainViewModel
+
+class MainActivity: AppCompatActivity() {
+    val mainViewModel: MainViewModel by viewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainViewModel.mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainViewModel.mainBinding.root)
+        changeFragments(HomeFrg())
+        val binding = mainViewModel.mainBinding
+
+        binding.navBar.setOnItemSelectedListener { it ->
+            when(it.itemId) {
+                R.id.menu_home -> {
+                    changeFragments(HomeFrg())
+                    true
+                }
+                R.id.menu_favourites -> {
+                    changeFragments(FavoritesFrg())
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    fun changeFragments(frg: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                mainViewModel.mainBinding.fragmentsHolder.id,
+                frg
+            )
+            .commit()
+    }
+}
