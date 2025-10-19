@@ -10,6 +10,7 @@ import com.kecc.data.repo.CoursesRepoImp
 import com.kecc.domain.interfaces.CoursesRepoItf
 import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
+import com.kecc.domain.usecases.DeleteCourseFromDb
 import com.kecc.domain.usecases.GetCourses
 import com.kecc.domain.usecases.GetDbCourses
 import com.kecc.domain.usecases.InsertCourseToDb
@@ -26,18 +27,57 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
     lateinit var homeBinding: FrgHomeBinding
     lateinit var favBinding: FrgFavoritesBinding
 
-
-    suspend fun getCourses(): ArrayList<CourseModel> {
-        return GetCourses(coursesRepo).execute()
+    fun sortCourses(byDate: Boolean) {
+        val curValues = rvItems.value
+        if (curValues != null) {
+            if (byDate) {
+                val result = curValues.sortedByDescending {
+                    when (it) {
+                        is CourseModel -> {
+                            it.publishDate
+                        }
+                        else -> null
+                    }
+                }
+                rvItems.postValue(result)
+            }
+            else {
+                val result = curValues.sortedWith (
+                    compareBy<DisplayableItemItf> {
+                        (it as CourseModel)?.id ?: Int.MAX_VALUE
+                    }
+                )
+                rvItems.postValue(result)
+            }
+        }
     }
-
+    suspend fun getCourses(): ArrayList<CourseModel> {
+        val items = GetCourses(coursesRepo).execute()
+        for (i in items) {
+            if (i.hasLike) {
+                insertToDb(i)
+            }
+        }
+        return items
+    }
     suspend fun getDbCourses(): ArrayList<CourseModel> {
         return GetDbCourses(coursesRepo).execute()
     }
+    suspend fun insertToDb(model: CourseModel) {
+        InsertCourseToDb(coursesRepo).execute(model)
+    }
+    suspend fun deleteFromDb(itemId: Int) {
+        DeleteCourseFromDb(coursesRepo).execute(itemId)
+        rvDbItems.postValue(getDbCourses())
+    }
+
 
     val rvAdapter = ListDelegationAdapter<List<DisplayableItemItf>>(
         courseAdapterDelegate()
     )
+    val curRvItems: MutableLiveData<List<DisplayableItemItf>> by lazy {
+        MutableLiveData<List<DisplayableItemItf>>()
+    }
     val rvItems: MutableLiveData<List<DisplayableItemItf>> by lazy {
         MutableLiveData<List<DisplayableItemItf>>()
     }
@@ -61,17 +101,21 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
     ) {
         bind {
             binding.txtTitle.text = item.title
+            binding.txtDesc.text = item.text
+            binding.txtPrice.text = item.price
+            binding.txtRate.text = item.rate
+            binding.txtDate.text = item.publishDate
             binding.btnFav.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    insertToDb(item)
+                    when (item.hasLike) {
+                        false -> insertToDb(item)
+                        true -> deleteFromDb(item.id)
+                    }
                 }
             }
-
         }
     }
 
-    suspend fun insertToDb(model: CourseModel) {
-        InsertCourseToDb(coursesRepo).execute(model)
-    }
+
 
 }

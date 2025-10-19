@@ -12,4 +12,7 @@ interface CourseDao {
 
     @Query("select * from courses")
     suspend fun getItems(): List<CourseDbItem>
+
+    @Query("delete from courses where id = :id")
+    suspend fun deleteItem(id: Int)
 }

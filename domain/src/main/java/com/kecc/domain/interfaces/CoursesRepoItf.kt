@@ -7,4 +7,5 @@ interface CoursesRepoItf {
 
     suspend fun insertCourseToDb(model: CourseModel)
     suspend fun getCoursesDb(): ArrayList<CourseModel>
+    suspend fun deleteCourseFromDb(itemId: Int)
 }

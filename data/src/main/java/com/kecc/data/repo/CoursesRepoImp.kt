@@ -26,4 +26,8 @@ class CoursesRepoImp(val db: MainDb): CoursesRepoItf {
         }
         return result
     }
+
+    override suspend fun deleteCourseFromDb(itemId: Int) {
+        db.getCourseDao().deleteItem(itemId)
+    }
 }

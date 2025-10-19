@@ -66,11 +66,19 @@ class HomeFrg : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             mainViewModel.rvItems.postValue(mainViewModel.getCourses())
+
         }
+
 
         mainViewModel.rvItems.observe(viewLifecycleOwner) {
             mainViewModel.rvAdapter.items = it
             mainViewModel.rvAdapter.notifyDataSetChanged()
+        }
+
+        var sortByDate: Boolean = false
+        binding.btnFilter.setOnClickListener {
+            sortByDate = !sortByDate
+            mainViewModel.sortCourses(sortByDate)
         }
     }
 
