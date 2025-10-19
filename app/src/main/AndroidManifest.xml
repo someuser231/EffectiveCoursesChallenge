@@ -11,12 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EffectiveCoursesChallenge">
+        android:theme="@style/Theme.ECC">
         <activity
             android:name=".activities.SignInActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.EffectiveCoursesChallenge">
+            android:theme="@style/Theme.ECC">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     tools:context=".fragments.SignInFrg"
+    style="@style/Theme.ECC.Background"
     >
 
     <TextView
+        style="@style/Theme.ECC.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
@@ -17,8 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email"
+        android:layout_marginTop="28dp"
         />
     <EditText
+        style="@style/Theme.ECC.InputField.SignIn"
         android:id="@+id/etxt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,8 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
+        android:layout_marginTop="16dp"
         />
     <EditText
+        style="@style/Theme.ECC.InputField.SignIn"
         android:id="@+id/etxt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,58 +46,76 @@
         android:hint="@string/password_hint"
         />
     <Button
+        style="@style/Theme.ECC.Button"
         android:id="@+id/btn_signIn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
-        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
         />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_account"
             />
         <TextView
+            style="@style/Theme.ECC.ActiveText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
             />
     </LinearLayout>
     <TextView
+        style="@style/Theme.ECC.ActiveText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/black"
+        android:background="@color/stroke"
+        android:layout_marginTop="32dp"
         />
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
+        android:layout_marginTop="32dp"
         >
-        <Button
+        <ImageButton
+            style="@style/Theme.ECC.Button"
             android:id="@+id/btn_vk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VK"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue"
+            android:src="@drawable/icon_vk"
+            android:contentDescription="@string/vk"
             />
-        <Button
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            />
+        <ImageButton
+            style="@style/Theme.ECC.Button.OK"
             android:id="@+id/btn_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OK"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_ok"
+            android:contentDescription="@string/ok"
             />
     </LinearLayout>
-
 
 </LinearLayout>

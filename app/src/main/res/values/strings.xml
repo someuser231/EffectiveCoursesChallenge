@@ -14,4 +14,6 @@
     <string name="search_courses">Search courses...</string>
     <string name="by_publish_date">По дате добавления</string>
     <string name="more_detail">More detail</string>
+    <string name="vk" translatable="false">VK</string>
+    <string name="ok" translatable="false">OK</string>
 </resources>
