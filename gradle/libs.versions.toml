@@ -12,6 +12,8 @@ jetbrainsKotlinJvm = "2.0.21"
 fragment = "1.5.4"
 navigation  = "2.9.5"
 adapterdelegates = "4.3.2"
+retrofit = "3.0.0"
+koin = "4.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,6 +26,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 androidx-navigation = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
 adapterdelegates = { group = "com.hannesdorfmann", name = "adapterdelegates4-kotlin-dsl-viewbinding", version.ref = "adapterdelegates"}
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+koin-core = {group = "io.insert-koin", name = "koin-core", version.ref =  "koin"}
+koin-android = {group = "io.insert-koin", name = "koin-android", version.ref =  "koin"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.kecc.domain.usecases.SignInCheck
-import com.kecc.domain.usecases.SignInByOk
-import com.kecc.domain.usecases.SignInByVk
+import com.kecc.domain.usecases.SignIn
 import com.kecc.effectivecourseschallenge.activities.MainActivity
 import com.kecc.effectivecourseschallenge.databinding.FrgSigninBinding
-import com.kecc.effectivecourseschallenge.view_models.AppViewModel
+import com.kecc.effectivecourseschallenge.view_models.SignInViewModel
 
 
 private const val ARG_PARAM1 = "param1"
@@ -22,7 +20,7 @@ class SignInFrg : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    val appViewModel: AppViewModel by activityViewModels()
+    val signInViewModel: SignInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +34,8 @@ class SignInFrg : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        appViewModel.signInBinding = FrgSigninBinding.inflate(layoutInflater)
-        return appViewModel.signInBinding.root
+        signInViewModel.signInBinding = FrgSigninBinding.inflate(layoutInflater)
+        return signInViewModel.signInBinding.root
     }
 
     companion object {
@@ -53,22 +51,24 @@ class SignInFrg : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = appViewModel.signInBinding
+        val binding = signInViewModel.signInBinding
         binding.btnSignIn.setOnClickListener {
-            if (SignInCheck(
+            if (signInViewModel.checkSignIn(
                     binding.etxtLogin.text.toString(),
                     binding.etxtPassword.text.toString()
-            ).execute()) {
+            )) {
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 requireActivity().startActivity(intent)
                 requireActivity().finish()
             }
         }
         binding.btnVk.setOnClickListener {
-            SignInByVk(requireActivity()).execute()
+            val intent = Intent(Intent.ACTION_VIEW, signInViewModel.getVkUri())
+            requireActivity().startActivity(intent)
         }
         binding.btnOk.setOnClickListener {
-            SignInByOk(requireActivity()).execute()
+            val intent = Intent(Intent.ACTION_VIEW, signInViewModel.getOkUri())
+            requireActivity().startActivity(intent)
         }
     }
 }

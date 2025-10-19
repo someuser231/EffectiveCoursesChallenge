@@ -9,9 +9,10 @@ import com.kecc.effectivecourseschallenge.databinding.ActivityMainBinding
 import com.kecc.effectivecourseschallenge.fragments.FavoritesFrg
 import com.kecc.effectivecourseschallenge.fragments.HomeFrg
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: AppCompatActivity() {
-    val mainViewModel: MainViewModel by viewModels()
+    val mainViewModel: MainViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel.mainBinding = ActivityMainBinding.inflate(layoutInflater)

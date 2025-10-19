@@ -2,11 +2,11 @@ package com.kecc.domain.usecases
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.core.net.toUri
 
-class SignInByOk(val activity: Activity) {
-    fun execute() {
-        val intent = Intent(Intent.ACTION_VIEW, "https://ok.ru".toUri())
-        activity.startActivity(intent)
+class SignInByOk() {
+    fun execute(): Uri {
+        return "https://ok.ru".toUri()
     }
 }

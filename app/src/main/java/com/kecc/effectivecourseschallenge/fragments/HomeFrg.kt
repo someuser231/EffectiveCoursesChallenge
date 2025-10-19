@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import com.kecc.data.repo.CoursesRepoImp
 import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
-import com.kecc.effectivecourseschallenge.R
+import com.kecc.domain.usecases.GetCourses
 import com.kecc.effectivecourseschallenge.databinding.FrgHomeBinding
 import com.kecc.effectivecourseschallenge.databinding.RvItemBinding
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -57,53 +60,20 @@ class HomeFrg : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = mainViewModel.homeBinding
-
-        val adapter = ListDelegationAdapter<List<DisplayableItemItf>>(
-            courseAdapterDelegate()
-        )
-        val items: List<DisplayableItemItf> = listOf(
-            CourseModel(
-                1,
-                "test",
-                "",
-                "",
-                "",
-                "",
-                false,
-                ""
-            ),
-            CourseModel(
-                2,
-                "test2",
-                "",
-                "",
-                "",
-                "",
-                false,
-                ""
-            ),
-            CourseModel(
-                2,
-                "test3",
-                "",
-                "",
-                "",
-                "",
-                false,
-                ""
-            )
-        )
-
-        adapter.items = items
         binding.rvHome.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvHome.adapter = adapter
-    }
 
-    fun courseAdapterDelegate() = adapterDelegateViewBinding<CourseModel, DisplayableItemItf, RvItemBinding>(
-        { layoutInflater, root -> RvItemBinding.inflate(layoutInflater, root, false) }
-    ) {
-        bind {
-            binding.txtTitle.text = item.title
+        binding.rvHome.adapter = mainViewModel.rvAdapter
+
+        CoroutineScope(Dispatchers.IO).launch {
+            mainViewModel.rvItems.postValue(mainViewModel.getCourses())
+
+        }
+        mainViewModel.rvItems.observe(viewLifecycleOwner) {
+            mainViewModel.rvAdapter.items = it
+            mainViewModel.rvAdapter.notifyDataSetChanged()
+
         }
     }
+
+
 }
