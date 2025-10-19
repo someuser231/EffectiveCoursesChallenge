@@ -66,12 +66,11 @@ class HomeFrg : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             mainViewModel.rvItems.postValue(mainViewModel.getCourses())
-
         }
+
         mainViewModel.rvItems.observe(viewLifecycleOwner) {
             mainViewModel.rvAdapter.items = it
             mainViewModel.rvAdapter.notifyDataSetChanged()
-
         }
     }
 

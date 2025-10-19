@@ -16,7 +16,6 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         signInViewModel.appBinding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(signInViewModel.appBinding.root)
-        println(signInViewModel.appBinding)
         supportFragmentManager.beginTransaction()
             .replace(
                 signInViewModel.appBinding.fragmentsHolder.id,

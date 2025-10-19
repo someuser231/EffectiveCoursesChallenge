@@ -5,7 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kecc.effectivecourseschallenge.R
+import com.kecc.effectivecourseschallenge.databinding.FrgFavoritesBinding
+import com.kecc.effectivecourseschallenge.view_models.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.getValue
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -13,6 +21,7 @@ private const val ARG_PARAM2 = "param2"
 class FavoritesFrg : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +35,8 @@ class FavoritesFrg : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_favorites, container, false)
+        mainViewModel.favBinding = FrgFavoritesBinding.inflate(layoutInflater)
+        return mainViewModel.favBinding.root
     }
 
     companion object {
@@ -39,5 +48,22 @@ class FavoritesFrg : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = mainViewModel.favBinding
+        binding.rvFav.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.rvFav.adapter = mainViewModel.rvAdapter
+
+        CoroutineScope(Dispatchers.IO).launch {
+            mainViewModel.rvDbItems.postValue(mainViewModel.getDbCourses())
+        }
+
+        mainViewModel.rvDbItems.observe(viewLifecycleOwner) {
+            mainViewModel.rvAdapter.items = it
+            mainViewModel.rvAdapter.notifyDataSetChanged()
+        }
     }
 }
