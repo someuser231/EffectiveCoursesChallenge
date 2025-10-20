@@ -13,6 +13,7 @@ import com.kecc.data.repo.CoursesRepoImp
 import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
 import com.kecc.domain.usecases.GetCourses
+import com.kecc.effectivecourseschallenge.R
 import com.kecc.effectivecourseschallenge.databinding.FrgHomeBinding
 import com.kecc.effectivecourseschallenge.databinding.RvItemBinding
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
@@ -79,8 +80,13 @@ class HomeFrg : Fragment() {
         binding.ibtnFilter.setOnClickListener {
             sortByDate = !sortByDate
             mainViewModel.sortCourses(sortByDate)
+            drawSortInfo(binding, sortByDate)
         }
+        drawSortInfo(binding, sortByDate)
     }
 
-
+    fun drawSortInfo(binding: FrgHomeBinding, sortByDate: Boolean) {
+        if (sortByDate) binding.txtFilter.text = getString(R.string.by_publish_date)
+        else binding.txtFilter.text = getString(R.string.by_id)
+    }
 }
