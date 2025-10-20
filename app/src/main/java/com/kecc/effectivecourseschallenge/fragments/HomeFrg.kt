@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
@@ -17,6 +18,7 @@ import com.kecc.effectivecourseschallenge.R
 import com.kecc.effectivecourseschallenge.databinding.FrgHomeBinding
 import com.kecc.effectivecourseschallenge.databinding.RvItemBinding
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
+import com.knc.nasachallenge.network.NetworkUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,18 +64,25 @@ class HomeFrg : Fragment() {
 
         val binding = mainViewModel.homeBinding
         binding.rvHome.layoutManager = LinearLayoutManager(requireContext())
-
         binding.rvHome.adapter = mainViewModel.rvAdapter
+        mainViewModel.rvAdapter.items = null
 
-        CoroutineScope(Dispatchers.IO).launch {
-            mainViewModel.rvItems.postValue(mainViewModel.getCourses())
+        mainViewModel.rvAdapter.notifyDataSetChanged()
 
+        checkInternet()
+
+        mainViewModel.isConnected.observe(viewLifecycleOwner) {
+            if (mainViewModel.isConnected.value == true) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    mainViewModel.rvItems.postValue(mainViewModel.getCourses())
+                }
+            }
         }
-
 
         mainViewModel.rvItems.observe(viewLifecycleOwner) {
             mainViewModel.rvAdapter.items = it
             mainViewModel.rvAdapter.notifyDataSetChanged()
+            if (it != null) binding.progressBar.isVisible = false
         }
 
         var sortByDate: Boolean = false
@@ -88,5 +97,24 @@ class HomeFrg : Fragment() {
     fun drawSortInfo(binding: FrgHomeBinding, sortByDate: Boolean) {
         if (sortByDate) binding.txtFilter.text = getString(R.string.by_publish_date)
         else binding.txtFilter.text = getString(R.string.by_id)
+    }
+
+    fun checkInternet() {
+        if (NetworkUtils.isNetworkAvailable(requireContext())){
+            CoroutineScope(Dispatchers.Main).launch {
+                if (NetworkUtils.isInternetAvailable()){
+                    mainViewModel.isConnected.postValue(true)
+                } else {
+                    mainViewModel.isConnected.postValue(false)
+                }
+            }
+        } else {
+            mainViewModel.isConnected.postValue(false)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainViewModel.isConnected.postValue(false)
     }
 }

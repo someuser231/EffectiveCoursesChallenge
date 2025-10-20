@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kecc.effectivecourseschallenge.R
@@ -64,6 +65,7 @@ class FavoritesFrg : Fragment() {
         mainViewModel.rvDbItems.observe(viewLifecycleOwner) {
             mainViewModel.rvAdapter.items = it
             mainViewModel.rvAdapter.notifyDataSetChanged()
+            if (it != null) binding.progressBar.isVisible = false
         }
     }
 }

@@ -52,6 +52,7 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
         }
     }
     suspend fun getCourses(): ArrayList<CourseModel> {
+
         val items = GetCourses(coursesRepo).execute()
         for (i in items) {
             if (i.hasLike) {
@@ -70,6 +71,8 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
         DeleteCourseFromDb(coursesRepo).execute(itemId)
         rvDbItems.postValue(getDbCourses())
     }
+
+    val isConnected = MutableLiveData<Boolean>()
 
 
     val rvAdapter = ListDelegationAdapter<List<DisplayableItemItf>>(
