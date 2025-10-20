@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/email"
         android:layout_marginTop="28dp"
+        android:fontFamily="@font/roboto_medium"
         />
     <EditText
         style="@style/Theme.ECC.InputField.SignIn"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_medium"
         />
     <EditText
         style="@style/Theme.ECC.InputField.SignIn"
@@ -64,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_account"
+            android:fontFamily="@font/roboto_semibold"
             />
         <TextView
             style="@style/Theme.ECC.ActiveText"
@@ -95,7 +98,7 @@
         >
         <ImageButton
             style="@style/Theme.ECC.Button"
-            android:id="@+id/btn_vk"
+            android:id="@+id/ibtn_vk"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -109,7 +112,7 @@
             />
         <ImageButton
             style="@style/Theme.ECC.Button.OK"
-            android:id="@+id/btn_ok"
+            android:id="@+id/ibtn_ok"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="1"

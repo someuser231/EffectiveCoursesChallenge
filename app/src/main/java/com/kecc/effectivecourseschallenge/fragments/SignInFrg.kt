@@ -56,17 +56,19 @@ class SignInFrg : Fragment() {
             if (signInViewModel.checkSignIn(
                     binding.etxtLogin.text.toString(),
                     binding.etxtPassword.text.toString()
+            ) && signInViewModel.checkEmail(
+                    binding.etxtLogin.text.toString()
             )) {
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 requireActivity().startActivity(intent)
                 requireActivity().finish()
             }
         }
-        binding.btnVk.setOnClickListener {
+        binding.ibtnVk.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, signInViewModel.getVkUri())
             requireActivity().startActivity(intent)
         }
-        binding.btnOk.setOnClickListener {
+        binding.ibtnOk.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, signInViewModel.getOkUri())
             requireActivity().startActivity(intent)
         }

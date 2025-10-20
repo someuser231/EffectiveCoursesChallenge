@@ -102,10 +102,12 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
         bind {
             binding.txtTitle.text = item.title
             binding.txtDesc.text = item.text
-            binding.txtPrice.text = item.price
+            binding.txtPrice.text = item.price + " ₽"
             binding.txtRate.text = item.rate
             binding.txtDate.text = item.publishDate
-            binding.btnFav.setOnClickListener {
+            binding.chkboxFav.isChecked = item.hasLike
+
+            binding.chkboxFav.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     when (item.hasLike) {
                         false -> insertToDb(item)

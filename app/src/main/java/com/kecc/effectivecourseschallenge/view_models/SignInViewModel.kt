@@ -21,4 +21,9 @@ class SignInViewModel(): ViewModel() {
     fun getOkUri(): Uri {
         return SignInByOk().execute()
     }
+
+    fun checkEmail(mail: String): Boolean {
+        val regex = Regex("[^А-Яа-я]+@[^А-Яа-я]+.[^А-Яа-я]+")
+        return regex.matches(mail)
+    }
 }

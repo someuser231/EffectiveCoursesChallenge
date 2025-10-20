@@ -76,7 +76,7 @@ class HomeFrg : Fragment() {
         }
 
         var sortByDate: Boolean = false
-        binding.btnFilter.setOnClickListener {
+        binding.ibtnFilter.setOnClickListener {
             sortByDate = !sortByDate
             mainViewModel.sortCourses(sortByDate)
         }

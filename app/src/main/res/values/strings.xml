@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">EffectiveCoursesChallenge</string>
+    <string name="app_name" translatable="false">Effective Challenge</string>
     <string name="sign_in">Sign In</string>
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
