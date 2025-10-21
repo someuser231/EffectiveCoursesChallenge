@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.kecc.domain.usecases.SignIn
 import com.kecc.effectivecourseschallenge.activities.MainActivity
 import com.kecc.effectivecourseschallenge.databinding.FrgSigninBinding
 import com.kecc.effectivecourseschallenge.view_models.SignInViewModel

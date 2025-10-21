@@ -8,15 +8,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
-import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import com.kecc.data.repo.CoursesRepoImp
-import com.kecc.domain.interfaces.DisplayableItemItf
-import com.kecc.domain.models.CourseModel
-import com.kecc.domain.usecases.GetCourses
 import com.kecc.effectivecourseschallenge.R
 import com.kecc.effectivecourseschallenge.databinding.FrgHomeBinding
-import com.kecc.effectivecourseschallenge.databinding.RvItemBinding
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
 import com.knc.nasachallenge.network.NetworkUtils
 import kotlinx.coroutines.CoroutineScope

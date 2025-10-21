@@ -1,7 +1,6 @@
 package com.kecc.effectivecourseschallenge.activities
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kecc.effectivecourseschallenge.R
@@ -10,10 +9,6 @@ import com.kecc.effectivecourseschallenge.fragments.AccountFrg
 import com.kecc.effectivecourseschallenge.fragments.FavoritesFrg
 import com.kecc.effectivecourseschallenge.fragments.HomeFrg
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
-import com.knc.nasachallenge.network.NetworkUtils
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: AppCompatActivity() {

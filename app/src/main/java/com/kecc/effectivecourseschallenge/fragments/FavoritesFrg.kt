@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kecc.effectivecourseschallenge.R
 import com.kecc.effectivecourseschallenge.databinding.FrgFavoritesBinding
 import com.kecc.effectivecourseschallenge.view_models.MainViewModel
 import kotlinx.coroutines.CoroutineScope

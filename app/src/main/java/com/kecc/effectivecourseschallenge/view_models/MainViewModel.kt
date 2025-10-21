@@ -1,14 +1,11 @@
 package com.kecc.effectivecourseschallenge.view_models
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import coil.load
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import com.kecc.data.local.CourseDbItem
 import com.kecc.data.repo.CoursesRepoImp
-import com.kecc.domain.interfaces.CoursesRepoItf
 import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
 import com.kecc.domain.usecases.DeleteCourseFromDb
@@ -23,9 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
 import java.util.Locale
 
 class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {

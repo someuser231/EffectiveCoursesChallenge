@@ -1,7 +1,6 @@
 package com.kecc.effectivecourseschallenge.activities
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.kecc.effectivecourseschallenge.databinding.ActivitySignInBinding

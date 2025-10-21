@@ -4,7 +4,6 @@ import com.kecc.data.interfaces.CoursesApiItf
 import com.kecc.data.local.MainDb
 import com.kecc.data.remote.CoursesApiUtils
 import com.kecc.domain.interfaces.CoursesRepoItf
-import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
 
 class CoursesRepoImp(val db: MainDb): CoursesRepoItf {

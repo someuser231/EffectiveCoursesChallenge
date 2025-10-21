@@ -1,7 +1,6 @@
 package com.kecc.domain.usecases
 
 import com.kecc.domain.interfaces.CoursesRepoItf
-import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
 
 class GetCourses(val repo: CoursesRepoItf) {
