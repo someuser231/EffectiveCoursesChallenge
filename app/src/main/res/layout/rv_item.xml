@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="126dp"
         >
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_rv_item_rounded"
-            android:backgroundTint="@color/white_opacity50"
+            app:shapeAppearance="@style/RoundedImage"
+            android:scaleType="centerCrop"
+            android:background="@color/white_opacity50"
             />
         <CheckBox
             android:id="@+id/chkbox_fav"

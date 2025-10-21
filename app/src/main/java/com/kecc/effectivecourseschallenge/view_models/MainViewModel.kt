@@ -3,6 +3,7 @@ package com.kecc.effectivecourseschallenge.view_models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import coil.load
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.kecc.data.local.CourseDbItem
@@ -21,6 +22,11 @@ import com.kecc.effectivecourseschallenge.databinding.RvItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
 
 class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
     lateinit var mainBinding: ActivityMainBinding
@@ -89,6 +95,7 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
         MutableLiveData<List<DisplayableItemItf>>()
     }
 
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     fun courseAdapterDelegate() = adapterDelegateViewBinding<
             CourseModel,
             DisplayableItemItf,
@@ -107,8 +114,17 @@ class MainViewModel(private val coursesRepo: CoursesRepoImp): ViewModel() {
             binding.txtDesc.text = item.text
             binding.txtPrice.text = item.price + " ₽"
             binding.txtRate.text = item.rate
-            binding.txtDate.text = item.publishDate
             binding.chkboxFav.isChecked = item.hasLike
+
+            val date = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                .format(dateFormat.parse(item.publishDate))
+            binding.txtDate.text = date
+
+            val imageUrl = "https://placebear.com/400/150"
+            binding.imgMain.load(imageUrl) {
+                crossfade(true)
+            }
+
 
             binding.chkboxFav.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {

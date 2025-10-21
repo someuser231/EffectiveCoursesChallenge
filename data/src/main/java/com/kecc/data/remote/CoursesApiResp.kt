@@ -1,8 +1,7 @@
 package com.kecc.data.remote
 
-import com.kecc.domain.interfaces.DisplayableItemItf
 import com.kecc.domain.models.CourseModel
 
-data class TestModel(
+data class CoursesApiResp(
     val courses: ArrayList<CourseModel>
 )

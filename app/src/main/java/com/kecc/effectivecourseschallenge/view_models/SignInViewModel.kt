@@ -23,7 +23,7 @@ class SignInViewModel(): ViewModel() {
     }
 
     fun checkEmail(mail: String): Boolean {
-        val regex = Regex("[^А-Яа-я]+@[^А-Яа-я]+.[^А-Яа-я]+")
+        val regex = Regex("[^А-Яа-я@.]+@[^А-Яа-я@.]+.[^А-Яа-я@.]+")
         return regex.matches(mail)
     }
 }

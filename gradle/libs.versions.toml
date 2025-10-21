@@ -16,6 +16,7 @@ retrofit = "3.0.0"
 koin = "4.1.1"
 room = "2.6.1"
 ksp = "2.0.21-1.0.27"
+coil = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,10 +31,10 @@ androidx-navigation = { group = "androidx.navigation", name = "navigation-fragme
 adapterdelegates = { group = "com.hannesdorfmann", name = "adapterdelegates4-kotlin-dsl-viewbinding", version.ref = "adapterdelegates"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
-koin-core = {group = "io.insert-koin", name = "koin-core", version.ref =  "koin"}
 koin-android = {group = "io.insert-koin", name = "koin-android", version.ref =  "koin"}
 androidx-room = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
 androidx-room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "room"}
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
